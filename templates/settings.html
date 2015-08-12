@@ -1,0 +1,27 @@
+{% import "_includes/forms" as forms %}
+
+{% if sections %}
+
+	{% set sectionsInput %}
+		{% for section in sections %}
+			<div>
+				{{ forms.checkbox({
+					label: section.name,
+					name: 'sections[]',
+					value: section.id,
+					checked: (section.id in settings.sections)
+				}) }}
+			</div>
+		{% endfor %}
+	{% endset %}
+
+	{{ forms.field({
+		label: "Types of entry"|t,
+		instructions: "Which entry types should be visible in the widget?"|t
+	}, sectionsInput) }}
+
+{% else %}
+
+	<p>{{ "No sections are available."|t }}</p>
+
+{% endif %}

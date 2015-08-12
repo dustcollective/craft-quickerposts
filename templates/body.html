@@ -1,0 +1,14 @@
+{% set sections = craft.sections.getAllSections() %}
+
+<div class="buttons">
+
+	{# Loop through all sections #}
+	{% for section in sections if section.id in settings.sections %}
+
+		<div class="btngroup">
+			<a class="btn submit" href="/admin/entries/{{ section.handle }}/new">Create a new {{ section.name }}</a>
+		</div>
+
+	{% endfor %}
+
+</div>
